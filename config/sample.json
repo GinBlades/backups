@@ -1,0 +1,16 @@
+{
+    "excludes": [
+        "*vendor/*",
+        "*node_modules/*",
+        "*.git/*",
+        ".*",
+        "projects/os/*",
+        "sites/_demos/*",
+        "sites/_archive/*",
+        "tmp/*"
+    ],
+    "external": true,
+    "host": "vm1",
+    "from": "~/",
+    "to": "/mnt/e/Backups/vm1"
+}
