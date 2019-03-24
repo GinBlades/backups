@@ -1,7 +1,11 @@
 require "json"
+require "date"
+
 json = File.read(File.join(__dir__, "config", [ARGV[0], "json"].join(".")))
 config = JSON.parse(json)
 required = ["excludes", "from", "to"]
+timestamp = Time.new.strftime("%Y-%m-%d-%H-%M")
+
 if (required - config.keys).size > 0
   puts "Missing required keys: #{required - config.keys}"
   exit
@@ -20,5 +24,6 @@ if config["external"]
 end
 
 to = config["to"]
+log = "#{ARGV[0]}-#{timestamp}.log"
 
-system "rsync -avz --delete #{ex} #{from} #{to}  --log-file=logs/#{ARGV[0]}.log"
+system "rsync -avz --delete #{ex} #{from} #{to}  --log-file=logs/#{log}"
